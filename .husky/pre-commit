@@ -2,3 +2,12 @@
 . "$(dirname "$0")/_/husky.sh"
 
 npm run lint
+
+echo "\n---- Checking for eslint-disable comments"
+
+if grep -r "eslint-disable" ./frontend/src; then
+    echo "---- Please remove eslint-disable comments before commiting"
+    exit 1
+fi
+
+echo "---- Done"
