@@ -1,4 +1,5 @@
 const Joi = require("joi")
+//package joi  backendにnpmインストールする
 
 const pokemonSchema = Joi.object(
     {
@@ -20,6 +21,7 @@ const validatePokemon = async (req, res, next) => {
     } catch(e) {
         console.log(e)
         res.status(422).send(e.details[0].message)
+        //e のオブジェクトの中に、details, messageがあり、エラーメッセージが表示される
     }
 
 }

@@ -10,6 +10,7 @@ const router = createBrowserRouter([
         element: <App/>,
         loader: pokemonLoader,
         action: pokemonAction
+         /* Form ===> react dom rooter method必要　→router、appページにactionを追記必要 */
     }
 ])
 
