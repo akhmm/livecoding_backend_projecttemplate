@@ -25,7 +25,7 @@ function App() {
   //si navigation is loading, we can show """"
 
   const fetcher = useFetcher();
-//si navigation is loading, we can show """"
+//fetcher pas de redirection navigation.stateの代わりに使える、FORMのfetcherは削除しても良い
 
   const [pokemonId, setPokemonId] = useState(undefined);
   const [selectedPokemon, setSelectedPokemon] = useState(""); //pokemon.id
@@ -88,6 +88,10 @@ function App() {
   return (
     <div className="App">
       Voila
+      {/* statusによって表示を変えるには様々な方法があるsetTimeoutでテスト可能
+      navigation.state === "submitting" ? <>submitting</> : navigation.state === <>"loading"</>
+      */}
+
       {fetcher.state === "submitting" ? (
         <>Submitting...</>
       ) : fetcher.state === "loading" ? (
