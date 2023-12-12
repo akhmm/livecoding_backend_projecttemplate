@@ -22,11 +22,13 @@ function App() {
     4: UseState作って onInputで修正、validerを押したらhandleeditが発動する
   */
   const navigation = useNavigation();
+  //si navigation is loading, we can show """"
 
   const fetcher = useFetcher();
+//si navigation is loading, we can show """"
 
   const [pokemonId, setPokemonId] = useState(undefined);
-  const [selectedPokemon, setSelectedPokemon] = useState("");
+  const [selectedPokemon, setSelectedPokemon] = useState(""); //pokemon.id
   const [pokemonName, setPokemonName] = useState("");
   const [pokemonDescription, setPokemonDescription] = useState("");
 
@@ -109,7 +111,7 @@ function App() {
       <br />
       {pokemonId && (
         <fetcher.Form method={"put"}>
-          <input type={"hidden"} value={selectedPokemon} name={"id"} />
+          <input type={"hidden"} value={selectedPokemon} name={"id"} /> {/*hiddenに*/}
           <input
             type={"text"}
             placeholder={"nom"}
@@ -129,11 +131,13 @@ function App() {
       )}
       <br />
       <br />
+      {/* Form ===> react dom rooter method必要　→router、appページにactionを追記必要 →pokemonaction追記*/}
       <fetcher.Form method={"post"}> 
       {/*
       ただ単にフォームを追加するだけだと、毎度提出するたびにページがロードされてしまい、reactのアプリとしてはよく無い挙動、preventdefault必須
       */}        
         <input type={"text"} placeholder={"nom"} name={"nom"} />
+        {/*nameで定義をするため、nameは必須事項*/}
         <input type={"text"} placeholder={"description"} name={"description"} />
         <button type={"submit"}>valider</button>
       </fetcher.Form>
@@ -156,7 +160,7 @@ export const pokemonAction = async ({ request }) => {
   if (request.method === "POST") {
     try {
       const formData = await request.formData();
-      const nom = formData.get("nom");
+      const nom = formData.get("nom");　//ここでの"nom"は、formで定めたname
       const description = formData.get("description");
 
       return await axios.post("http://localhost:5000/pokemons", {
